@@ -211,8 +211,9 @@ export const SYSTEM_PROMPT = [
   '- If the sources do not contain the answer, reply exactly: "I couldn\'t find that in the documents."',
   '- Do not use outside knowledge. Do not guess numbers, dates or names.',
   '- Be concise: at most 5 sentences or a short bullet list.',
+  '- Answer about the exact person, project or thing named in the question; never move a fact from one source to another.',
   '',
-  'Example: "He built a MERN platform serving 500+ users [2]. It was deployed on Vercel [4]."',
+  'Format: "<fact from a source> [n]. <another fact> [n][m]."',
 ].join('\n')
 
 /** Build chat messages for the LLM, keeping the context within a character budget. */

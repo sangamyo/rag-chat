@@ -151,3 +151,9 @@ test('quick answers look past the question subject and into long list lines', as
   assert.match(ask('What databases has he worked with?'), /Databases: PostgreSQL, pgvector, Redis, MongoDB/)
   assert.match(ask('What was his CGPA?'), /CGPA: 7\.8\/10/)
 })
+
+test('system prompt carries no example facts a model could copy', async () => {
+  const { SYSTEM_PROMPT } = await import('./rag.js')
+  assert.doesNotMatch(SYSTEM_PROMPT, /MERN|Vercel|500\+|platform/i)
+  assert.match(SYSTEM_PROMPT, /<fact from a source> \[n\]/)
+})
